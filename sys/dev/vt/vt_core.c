@@ -119,7 +119,7 @@ static const struct terminal_class vt_termclass = {
 
 /* Bell pitch/duration. */
 #define	VT_BELLDURATION	(SBT_1S / 20)
-#define	VT_BELLPITCH	(1193182 / 800) /* Approx 1491Hz */
+#define	VT_BELLPITCH	800
 
 #define	VT_UNIT(vw)	((vw)->vw_device->vd_unit * VT_MAXWINDOWS + \
 			(vw)->vw_number)
@@ -1677,7 +1677,6 @@ vtterm_splash(struct vt_device *vd)
 		} else {
 			if (si->si_depth != 4)
 				return;
-			printf("SPLASH: width: %d height: %d depth: %d\n", si->si_width, si->si_height, si->si_depth);
 			image = (uintptr_t)si + sizeof(struct splash_info);
 			image = roundup2(image, 8);
 			top = (vd->vd_height - si->si_height) / 2;
